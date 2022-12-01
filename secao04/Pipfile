@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+psycopg2 = "*"
+sqlalchemy = "*"
+asyncpg = "*"
+fastapi = "*"
+uvicorn = "*"
+gunicorn = "*"
+pydantic = "*"
+sqlalchemy-utils = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"

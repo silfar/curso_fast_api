@@ -1,0 +1,24 @@
+{
+    "editor.tokenColorCustomizations": {
+        "strings": "#dfd5a6",
+        "comments": "#868b87",
+        "functions": "#1ec40f",
+        "numbers": "#b2ecaa",
+         "textMateRules": [
+            {
+                "scope": "string.unquoted",
+                "settings": {
+                    "foreground": "#e221d8"
+                }
+            },
+            {
+                "scope": "keyword.operator",
+                "settings": {
+                    "foreground": "#08ff31"
+                }
+            }
+        ],
+        
+    }
+}
+
