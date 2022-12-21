@@ -5,6 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.configs import settings
 
+# Usa o settings para montar o engine 
 
 engine: AsyncEngine = create_async_engine(settings.DB_URL)
 

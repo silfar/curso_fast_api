@@ -49,15 +49,15 @@ async def get_cursos(db: AsyncSession = Depends(get_session)):
 @router.get('/{curso_id}', response_model=CursoModel,status_code=status.HTTP_200_OK)
 async def get_curso( curso_id: int, db: AsyncSession = Depends(get_session)):
     async with db as session:
-        query = Select(CursoModel).filter(CursoModel.id == curso_id)
+        query = select(CursoModel).filter(CursoModel.id == curso_id)
         result = await session.execute(query)
-        #curso: CursoModel = result.scalar_one_or_none()
-        curso: CursoModel = result
+        curso: CursoModel = result.scalar_one_or_none()
+        #curso: CursoModel = result
         
         if curso:
             return curso
         else:
-            raise HTTPException(detail='Curso n„o encontrado.',
+            raise HTTPException(detail='Curso n√£o encontrado.',
                                 status_code=status.HTTP_404_NOT_FOUND)
 
 
@@ -68,8 +68,8 @@ async def put_curso(curso_id:int, curso: CursoModel, db: AsyncSession = Depends(
     async with db as session:
         query = select(CursoModel).filter(CursoModel.id == curso_id)
         result = await session.execute(query)
-        #      curso_up = result.scalar_one_or_none()
-        curso_up : CursoModel = result
+        curso_up = result.scalar_one_or_none()
+        #curso_up : CursoModel = result
         if curso_up:
             curso_up.titulo=curso.titulo 
             curso_up.aulas=curso.aulas 
@@ -80,17 +80,17 @@ async def put_curso(curso_id:int, curso: CursoModel, db: AsyncSession = Depends(
             return curso_up
         
         else:
-            raise HTTPException(detail='Curso n„o encontrado.',
+            raise HTTPException(detail='Curso n√£o encontrado.',
                                 status_code=status.HTTP_404_NOT_FOUND)
 
 # DELETE CURSOS
-@router.put('/{curso_id}', response_model=CursoModel, status_code=status.HTTP_202_ACCEPTED)
+@router.delete('/{curso_id}', status_code= status.HTTP_204_NO_CONTENT)
 async def put_curso(curso_id:int, db: AsyncSession = Depends(get_session)):
     async with db as session:
         query = select(CursoModel).filter(CursoModel.id == curso_id)
         result = await session.execute(query)
-        #      curso_del = result.scalar_one_or_none()
-        curso_del : CursoModel = result
+        curso_del = result.scalar_one_or_none()
+
         
         if curso_del:
             await session.delete(curso_del)
@@ -98,7 +98,7 @@ async def put_curso(curso_id:int, db: AsyncSession = Depends(get_session)):
 
             return Response(status_code=status.HTTP_204_NO_CONTENT)
         else:
-            raise HTTPException(detail='Curso n„o encontrado.',
+            raise HTTPException(detail='Curso n√£o encontrado.',
                                 status_code=status.HTTP_404_NOT_FOUND)
         
   

@@ -4,10 +4,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.database import Session
 
+# Classe session 
+
 async def get_session() -> Generator:
-    Session: AsyncSession = Session()
+    session: AsyncSession = Session()
     
     try:
-        yield Session
+        yield session
     finally:
-        await Session.close()
+        await session.close()
